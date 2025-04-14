@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>로그인</title>
+</head>
+<body>
+    <form th:action="@{/member/login}" method="post" th:object="${memberVO}">
+        <div>
+            <span>이메일</span>
+            <input th:field="*{memberEmail}" placeholder="이메일 입력" />
+        </div>
+        <div>
+            <span>비밀번호</span>
+            <input th:field="*{memberPassword}" type="password" placeholder="비밀번호 입력" />
+        </div>
+        <button type="button">로그인</button>
+    </form>
+</body>
+</html>
+<script th:inline="javascript">
+    const inputs = document.querySelectorAll("input")
+    const button = document.querySelector("button");
+    const form = document.querySelector("form")
+
+    // const loginSuccess = [[${login}]];
+    // if(!loginSuccess){
+    //     alert("로그인 실패")
+    // }
+
+    button.addEventListener("click", () => {
+        for(let input of inputs){
+            if(!input.value) {
+                alert(input.name + "값이 입력되지 않았습니다.")
+                return;
+            }
+        }
+        form.submit();
+
+    })
+</script>
