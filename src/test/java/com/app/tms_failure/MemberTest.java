@@ -49,10 +49,31 @@ public class MemberTest {
         log.info("{}", memberService.login(memberVO));
     }
 
+//    회원정보 조회 테스트
     @Test
     public void getMemberTest(){
         Long memberId = 1L;
         memberService.getMember(memberId).map(MemberVO::toString).ifPresent(log::info);
     }
 
+//    업데이트 테스트
+    @Test
+    public void editMemberTest(){
+        MemberVO memberVO = new MemberVO();
+
+        //        아이디 set
+        memberVO.setId(1L);
+//        이메일 set
+        memberVO.setMemberEmail("고길동");
+//        비밀번호 set
+        memberVO.setMemberPassword("123");
+//        이름 set
+        memberVO.setMemberName("고길동");
+//        주소 set
+        memberVO.setMemberAddress("길동하우스");
+//        전화번호 set
+        memberVO.setMemberPhone("00000000");
+
+        memberService.edit(memberVO);
+    }
 }

@@ -8,29 +8,30 @@
     <title>회원정보 수정</title>
 </head>
 <body>
-<form th:action="@{/member/update}" method="post" th:object="${memberVO}">
-    <input th:field="*{id}" th:value="${memberVO.id}" />
+<form th:action="@{/member/update}" method="post" th:object="${member}">
+    <input type="hidden" th:field="*{id}" />
     <div>
         <span>이메일</span>
-        <input th:field="*{memberEmail}" th:value="${memberVO.memberEmail}" placeholder="이메일 입력" />
+        <input th:field="*{memberEmail}" placeholder="이메일 입력" />
     </div>
     <div>
         <span>비밀번호</span>
-        <input th:field="*{memberPassword}" th:value="${memberVO.memberPassword}" placeholder="비밀번호 입력" />
+        <input th:field="*{memberPassword}" placeholder="비밀번호 입력" />
     </div>
     <div>
         <span>이름</span>
-        <input th:field="*{memberName}" th:value="${memberVO.memberName}" placeholder="이름 입력" />
+        <input th:field="*{memberName}" placeholder="이름 입력" />
     </div>
     <div>
         <span>주소</span>
-        <input th:field="*{memberAddress}" th:value="${memberVO.memberAddress}" placeholder="주소 입력" />
+        <input th:field="*{memberAddress}" placeholder="주소 입력" />
     </div>
     <div>
         <span>번호</span>
-        <input th:field="*{memberPhone}" th:value="${memberVO.memberPhone}" placeholder="전화번호 입력" />
+        <input th:field="*{memberPhone}" placeholder="전화번호 입력" />
     </div>
-    <button type="button">회원가입</button>
+<!--    유효성 검사를 위한 button 타입 설정-->
+    <button type="button">수정완료</button>
 </form>
 </body>
 </html>
@@ -39,6 +40,7 @@
     const button = document.querySelector("button");
     const form = document.querySelector("form")
 
+    // input 확인
     button.addEventListener("click", () => {
         for(let input of inputs){
             if(!input.value) {
